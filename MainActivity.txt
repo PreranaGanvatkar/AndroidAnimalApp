@@ -1,0 +1,35 @@
+package com.example.animalapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    RecyclerView recyclerView;
+    ArrayList<Animal> animals;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.recyler_view);
+        animals = new ArrayList<Animal>();
+        animals.add(new Animal("Eagle",R.drawable.Eagle));
+        animals.add(new Animal("Dog",R.drawable.Dog));
+        animals.add(new Animal("Cat",R.drawable.Cat));
+        animals.add(new Animal("Lion",R.drawable.Lion));
+        animals.add(new Animal("Owl",R.drawable.Owl));
+        animals.add(new Animal("Swan",R.drawable.Swan));
+        animals.add(new Animal("Dolphin",R.drawable.Dolphin));
+
+        AnimalAdapter animalAdapter = new AnimalAdapter(animals,this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(animalAdapter);
+    }
+}
