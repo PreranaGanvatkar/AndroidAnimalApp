@@ -19,10 +19,12 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalRowH
 
     ArrayList<Animal>animalData;
     Context context;
+    MyClickInterface myClickInterface;
 
     public AnimalAdapter(ArrayList<Animal> animalData,Context context){
         this.context=context;
         this.animalData=animalData;
+         this.myClickInterface=myClickInterface;
 
     }
     @Nullable
@@ -50,7 +52,16 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalRowH
             super(itemView);
             txtAnimalName=itemView.findViewById(R.id.txtAnimalName);
             imgAnimal=itemView.findViewById(R.id.img_animal);
+        itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    myClickInterface.onItemClick(getAdapterPosition());
+                }
+            });
         }
 
+    }
+interface MyClickInterface{
+        void onItemClick(int positionofTheAnimal);
     }
 }

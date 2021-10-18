@@ -32,4 +32,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(animalAdapter);
     }
+@Override
+    public void onItemClick(int positionofTheAnimal){
+        Toast.makeText(MainActivity.this, "Clicked " + animals.get(positionofTheAnimal).getName() , Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,Animalinfo.class);
+        intent.putExtra("image",animals.get(positionofTheAnimal).getImage());
+        intent.putExtra("name",animals.get(positionofTheAnimal).getName());
+        startActivity(intent);
+    }
 }
